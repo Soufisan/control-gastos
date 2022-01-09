@@ -1,9 +1,12 @@
-import React from 'react'
+
 import { formatearFecha } from '../helpers'
 
-const Gasto = ({ gasto }) => {
-    const { categoria, nombre, cantidad, id, fecha } = gasto
+const Gasto = ({ gastos }) => {
+    const { categoria, nombre, cantidad, id, fecha } = gastos
+    console.log(gastos)
+
     return (
+
         <div className="gasto sombra">
             <div className="contenido-gasto">
                 <div className="descripcion-gasto">

@@ -3,14 +3,18 @@ import Gasto from './Gasto'
 
 
 const ListadoGasto = ({ gastazo }) => {
+
+
     return (
         <div className="listado-gastos contenedor">
             <h2>{gastazo.length ? 'Gastos' : 'No tienes gastos'}</h2>
-            {gastazo.map((gasto) => {
+            {gastazo.map(gastos => {
                 <Gasto
-                    key={gasto.id}
-                    gasto={gasto}
+                    key={gastos.id}
+                    gastos={gastos}
                 />
+
+
             })}
         </div>
     )
