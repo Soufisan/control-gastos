@@ -6,11 +6,11 @@ export const generarId = () => {
 }
 
 export const formatearFecha = fecha => {
-    const fechaNueva = new Date(fecha)
+    const fechaNueva = new Date (fecha)
     const opciones = {
         year: 'numeric',
-        month: 'longh',
-        day: '2-digit'
+        month: 'long',
+        day: '2-digit',
     }
 
     return fechaNueva.toLocaleDateString('es-ES', opciones)
