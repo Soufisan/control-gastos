@@ -6,7 +6,7 @@ export const generarId = () => {
 }
 
 export const formatearFecha = fecha => {
-    const fechaNueva = new Date (fecha)
+    const fechaNueva = new Date(fecha)
     const opciones = {
         year: 'numeric',
         month: 'long',
@@ -15,3 +15,12 @@ export const formatearFecha = fecha => {
 
     return fechaNueva.toLocaleDateString('es-ES', opciones)
 }
+
+/* export const formatearCantidad = (cantidad) => {
+    return cantidad.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2
+    })
+}
+ */

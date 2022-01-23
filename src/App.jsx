@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { object } from 'prop-types'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import ListadoGasto from './components/ListadoGasto'
 import Modal from './components/Modal'
@@ -6,16 +7,28 @@ import { generarId } from './helpers'
 import IconoNuevoGastos from './img/nuevo-gasto.svg'
 
 function App() {
+  const [gastazo, setGastazo] = useState([])
   const [presupuesto, setPresupuesto] = useState(0)
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
   const [modal, setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
-  const [gastazo, setGastazo] = useState([])
+  const [gastoEditar, setGastoEditar] = useState({})
+
+  useEffect(() => {
+    if (Object.keys(gastoEditar).length > 0) {
+      setModal(true)
+
+      setTimeout(() => {
+        setAnimarModal(true)
+      }, 200);
+    }
+  }, [gastoEditar])
 
 
 
   const handleNuevoGasto = () => {
     setModal(true)
+    setGastoEditar({})
 
     setTimeout(() => {
       setAnimarModal(true)
@@ -24,9 +37,15 @@ function App() {
   }
 
   const guardarGasto = gastos => {
-    gastos.id = generarId()
-    gastos.fecha = Date.now()
-    setGastazo([...gastazo, gastos])
+    if (gastos.id) {
+      const gastoActualizado = gastos.map(gastoState => gastoState.id === gastos.id ? gastos : gastoState)
+      setGastazo(gastoActualizado)
+    } else {
+      gastos.id = generarId()
+      gastos.fecha = Date.now()
+      setGastazo([...gastazo, gastos])
+    }
+
 
     setAnimarModal(false)
     setTimeout(() => {
@@ -52,6 +71,7 @@ function App() {
           <main>
             <ListadoGasto
               gastazo={gastazo}
+              setGastoEditar={setGastoEditar}
             />
           </main>
           <div className="nuevo-gasto">
@@ -70,6 +90,7 @@ function App() {
           animarModal={animarModal}
           setAnimarModal={setAnimarModal}
           guardarGasto={guardarGasto}
+          gastoEditar={gastoEditar}
         />
       }
 
