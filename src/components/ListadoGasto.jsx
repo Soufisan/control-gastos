@@ -2,7 +2,7 @@ import React from 'react'
 import Gasto from './Gasto'
 
 
-const ListadoGasto = ({ gastazo, setGastoEditar }) => {
+const ListadoGasto = ({ gastazo, setGastoEditar, eliminarGasto }) => {
 
 
     return (
@@ -14,6 +14,7 @@ const ListadoGasto = ({ gastazo, setGastoEditar }) => {
                     key={gastos.id}
                     gastos={gastos}
                     setGastoEditar={setGastoEditar}
+                    eliminarGasto={eliminarGasto}
                 />
 
 

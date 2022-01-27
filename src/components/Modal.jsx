@@ -2,12 +2,20 @@ import { useState, useEffect } from 'react'
 import CerrarBtn from '../img/cerrar.svg'
 import MensajeError from './MensajeError'
 
-const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar }) => {
+const Modal = ({
+    setModal,
+    animarModal,
+    setAnimarModal,
+    guardarGasto,
+    gastoEditar,
+    setGastoEditar
+}) => {
 
     const [nombre, setNombre] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [categoria, setCategoria] = useState('')
     const [mensaje, setMensaje] = useState('')
+    const [fecha, setFecha] = useState('')
     const [id, setId] = useState('')
 
     useEffect(() => {
@@ -16,12 +24,13 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             setCantidad(gastoEditar.cantidad)
             setCategoria(gastoEditar.categoria)
             setId(gastoEditar.id)
+            setFecha(gastoEditar.fecha)
         }
     }, [])
 
     const handleCerrarModal = () => {
-
         setAnimarModal(false)
+        setGastoEditar({})
         setTimeout(() => {
             setModal(false)
         }, 200);
@@ -36,7 +45,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             }, 3000);
             return
         }
-        guardarGasto({ nombre, cantidad, categoria, id })
+        guardarGasto({ nombre, cantidad, categoria, id, fecha })
     }
 
     return (
